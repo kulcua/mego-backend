@@ -71,6 +71,8 @@ return [
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
             'database' => ltrim($DATABASE_URL['path'],['/']),
+            // env('DB_DATABASE', 'shoesstore'),
+            // 
             'username' => env('DB_USERNAME', 'kulcua'),
             'password' => env('DB_PASSWORD', 'kul123'),
             'charset' => 'utf8',
