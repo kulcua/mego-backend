@@ -31,8 +31,8 @@ return [
     ],
 
     'google' => [
-        'client_id' => env('231346323903-sbeltsl0bceb5p5ap415cvpesgtohmdg.apps.googleusercontent.com'),
-        'client_secret' => env('LoubT43tlzCkMPenq03qRo8H'),
+        'client_id' => ('231346323903-sbeltsl0bceb5p5ap415cvpesgtohmdg.apps.googleusercontent.com'),
+        'client_secret' => ('LoubT43tlzCkMPenq03qRo8H'),
         'redirect' => 'https://mego-backend.herokuapp.com/login/google/callback',
     ],
 ];
