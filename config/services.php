@@ -35,4 +35,10 @@ return [
         'client_secret' => ('LoubT43tlzCkMPenq03qRo8H'),
         'redirect' => 'https://mego-backend.herokuapp.com/api/login/google/callback',
     ],
+
+    // 'google' => [
+    //     'client_id' => ('231346323903-7mqb9bnhpv256sqn19lm5qmlvbuigcu1.apps.googleusercontent.com'),
+    //     'client_secret' => ('8CPfNXzEXeE_B-zTDYRSlwMa'),
+    //     'redirect' => 'http://localhost:8000/api/login/google/callback',
+    // ],
 ];
