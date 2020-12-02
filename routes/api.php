@@ -27,7 +27,9 @@ Route::delete('file/img/product/{product_detail_id}' , [FileController::class, '
 
 //REGION REQUEST LOGIN TO ACCESS
 Route::post('register', [AuthController::class, 'register']);
-Route::post('login', [AuthController::class, 'login']);
+//route login define to redirect when user has not login
+Route::post('login', [AuthController::class, 'login'])->name('login');
+
 Route::get('login/google', [AuthController::class, 'redirectToProvider']);
 Route::get('login/google/callback', [AuthController::class, 'handleProviderCallback']);
 

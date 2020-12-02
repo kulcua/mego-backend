@@ -70,11 +70,14 @@ class AuthController extends Controller
 
     public function redirectToProvider()
     {
-        return Socialite::driver('google')->redirect();
+        //stateless not error
+        return Socialite::driver('google')->stateless()->redirect();
     }
 
     public function handleProviderCallback()
     {
-        return Socialite::driver('google')->user();
+        $user = Socialite::driver('google')->stateless()->user();
+
+        return $user->token;
     }
 }
