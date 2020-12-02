@@ -77,7 +77,22 @@ class AuthController extends Controller
     public function handleProviderCallback()
     {
         $user = Socialite::driver('google')->stateless()->user();
+        $authUser = $this->findOrCreateUser($user);
+        Auth::login($authUser, true);
+        return true;
+    }
 
-        return $user->token;
+    public function findOrCreateUser($user)
+    {
+        $authUser = UserModel::where('email', $user->email)->first();
+
+        if ($authUser)
+            return $authUser;
+
+        return UserModel::create([
+            'name' => $user->name,
+            'email' => $user->email,
+            'provider' => 'google',
+        ]);
     }
 }
