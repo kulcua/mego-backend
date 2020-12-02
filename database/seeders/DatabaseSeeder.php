@@ -98,16 +98,22 @@ class DatabaseSeeder extends Seeder
 
         DB::table('sizes')->insert([
             [
-                'name' => 'S',
+                'name' => '35',
             ],
             [
-                'name' => 'M',
+                'name' => '36',
             ],
             [
-                'name' => 'L',
+                'name' => '37',
             ],
             [
-                'name' => 'XL',
+                'name' => '38',
+            ],
+            [
+                'name' => '39',
+            ],
+            [
+                'name' => '40',
             ],
         ]);
 

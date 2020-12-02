@@ -72,7 +72,7 @@ return [
             'port' => env('DB_PORT', '5432'),
             'database' => ltrim($DATABASE_URL['path'],['/']),
             // env('DB_DATABASE', 'shoesstore'),
-            // 
+            // ltrim($DATABASE_URL['path'],['/']),
             'username' => env('DB_USERNAME', 'kulcua'),
             'password' => env('DB_PASSWORD', 'kul123'),
             'charset' => 'utf8',
