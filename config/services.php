@@ -33,6 +33,6 @@ return [
     'google' => [
         'client_id' => ('231346323903-sbeltsl0bceb5p5ap415cvpesgtohmdg.apps.googleusercontent.com'),
         'client_secret' => ('LoubT43tlzCkMPenq03qRo8H'),
-        'redirect' => 'https://mego-backend.herokuapp.com/login/google/callback',
+        'redirect' => 'https://mego-backend.herokuapp.com/api/login/google/callback',
     ],
 ];
