@@ -14,6 +14,8 @@ Route::prefix('guest')->group(function () {
     Route::get('models', [App\Http\Controllers\ModelController::class, 'index']);
     Route::get('productcatalogs', [App\Http\Controllers\ProductCatalogController::class, 'index']);
     Route::get('sizes', [App\Http\Controllers\SizeController::class, 'index']);
+    Route::get('products', [App\Http\Controllers\ProductController::class, 'index']);
+    Route::get('productdetails', [App\Http\Controllers\ProductDetailController::class, 'index']);
 });
 
 Route::get('product/colors/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productColors']);
