@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->foreign('model_id')->references('id')->on('models');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
-            $table->string('description');
+            $table->text('description');
         });
     }
 
