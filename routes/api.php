@@ -16,10 +16,19 @@ Route::prefix('guest')->group(function () {
     Route::get('sizes', [App\Http\Controllers\SizeController::class, 'index']);
     Route::get('products', [App\Http\Controllers\ProductController::class, 'index']);
     Route::get('productdetails', [App\Http\Controllers\ProductDetailController::class, 'index']);
-});
 
-Route::get('product/colors/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productColors']);
-Route::get('product/sizes/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productSizes']);
+    Route::get('brands/{id}', [App\Http\Controllers\BrandController::class, 'show']);
+    Route::get('colors/{id}', [App\Http\Controllers\ColorController::class, 'show']);
+    Route::get('genders/{id}', [App\Http\Controllers\GenderController::class, 'show']);
+    Route::get('models/{id}', [App\Http\Controllers\ModelController::class, 'show']);
+    Route::get('productcatalogs/{id}', [App\Http\Controllers\ProductCatalogController::class, 'show']);
+    Route::get('sizes/{id}', [App\Http\Controllers\SizeController::class, 'show']);
+    Route::get('products/{id}', [App\Http\Controllers\ProductController::class, 'show']);
+    Route::get('productdetails/{id}', [App\Http\Controllers\ProductDetailController::class, 'show']);
+
+    Route::get('product/colors/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productColors']);
+    Route::get('product/sizes/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productSizes']);
+});
 
 Route::get('file/img/{file_name}', [FileController::class, 'getImgByName']);
 Route::get('file/img/product/{product_detail_id}', [FileController::class, 'getImgByProductDetailId']);
