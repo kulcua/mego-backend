@@ -13,11 +13,9 @@ class ProductDetailModel extends Model
 
     protected $fillable = [
         'product_id',
-        'cost', //gia goc
-        'price', //gia ban
+        'price',
         'color_id',
         'size_id',
-        'product_cata_id',
     ];
 
     public function product_detail_photos()

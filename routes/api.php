@@ -7,27 +7,43 @@ use Illuminate\Support\Facades\Route;
 
 //api for guest to read anything in shop
 Route::prefix('guest')->group(function () {
+    //API SHOW FOR GUEST
     // Matches The "/guest/brands" URL
     Route::get('brands', [App\Http\Controllers\BrandController::class, 'index']);
     Route::get('colors', [App\Http\Controllers\ColorController::class, 'index']);
     Route::get('genders', [App\Http\Controllers\GenderController::class, 'index']);
     Route::get('models', [App\Http\Controllers\ModelController::class, 'index']);
-    Route::get('productcatalogs', [App\Http\Controllers\ProductCatalogController::class, 'index']);
+    Route::get('collections', [App\Http\Controllers\CollectionController::class, 'index']);
     Route::get('sizes', [App\Http\Controllers\SizeController::class, 'index']);
     Route::get('products', [App\Http\Controllers\ProductController::class, 'index']);
-    Route::get('productdetails', [App\Http\Controllers\ProductDetailController::class, 'index']);
+    Route::get('product_details', [App\Http\Controllers\ProductDetailController::class, 'index']);
 
     Route::get('brands/{id}', [App\Http\Controllers\BrandController::class, 'show']);
     Route::get('colors/{id}', [App\Http\Controllers\ColorController::class, 'show']);
     Route::get('genders/{id}', [App\Http\Controllers\GenderController::class, 'show']);
     Route::get('models/{id}', [App\Http\Controllers\ModelController::class, 'show']);
-    Route::get('productcatalogs/{id}', [App\Http\Controllers\ProductCatalogController::class, 'show']);
+    Route::get('collections/{id}', [App\Http\Controllers\CollectionControllers::class, 'show']);
     Route::get('sizes/{id}', [App\Http\Controllers\SizeController::class, 'show']);
     Route::get('products/{id}', [App\Http\Controllers\ProductController::class, 'show']);
-    Route::get('productdetails/{id}', [App\Http\Controllers\ProductDetailController::class, 'show']);
+    Route::get('product_details/{id}', [App\Http\Controllers\ProductDetailController::class, 'show']);
+    //DONE API SHOW ALL FOR GUEST
 
+    //get all colors and sizes of a product
     Route::get('product/colors/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productColors']);
     Route::get('product/sizes/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productSizes']);
+
+    //get all products of a collection
+    Route::get('collection/products/{collection_id}', [App\Http\Controllers\CollectionController::class, 'collectionProducts']);
+
+    //get a product detail with lowest price
+    Route::get('product/lowest_price/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'lowestPrice']);
+
+    //get models and collections by gender
+    Route::get('models/gender/{gender_id}', [App\Http\Controllers\ModelController::class, 'modelsByGender']);
+    Route::get('collections/gender/{gender_id}', [App\Http\Controllers\CollectionController::class, 'collectionsByGender']);
+
+    //get product by gender
+    Route::get('products/gender/{gender_id}', [App\Http\Controllers\ProductController::class, 'productsByGender']);
 });
 
 Route::get('file/img/{file_name}', [FileController::class, 'getImgByName']);
@@ -60,7 +76,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
         'genders' => GenderController::class,
         'models' => ModelController::class,
         'brands' => BrandController::class,
-        'product_catalogs' => ProductCatalogController::class,
+        'collections' => CollectionController::class,
         'products' => ProductController::class,
         'product_details' => ProductDetailController::class,
         'orders' => OrderController::class,

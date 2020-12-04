@@ -4,7 +4,7 @@ info:
   description: |
     This is a Mego's Document APIs
   contact:
-    email: nhabui127@gmail.com
+    email: nhabui137@gmail.com
   version: 1.5.2
 servers:
 - url: https://mego-backend.herokuapp.com/api

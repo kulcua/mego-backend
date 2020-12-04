@@ -19,6 +19,7 @@ class ModelController extends Controller
         $this->authorize('admin');
         $rules = [
             'name' => 'required',
+            'gender_id' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails())
@@ -61,5 +62,11 @@ class ModelController extends Controller
         }
         $model->delete();
         return response()->json(null, 204);
+    }
+
+    public function modelsByGender($gender_id)
+    {
+        $models = ModelModel::where('gender_id', $gender_id)->get();
+        return response()->json($models, 200);
     }
 }

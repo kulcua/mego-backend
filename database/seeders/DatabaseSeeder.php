@@ -146,10 +146,28 @@ class DatabaseSeeder extends Seeder
 
         DB::table('models')->insert([
             [
-                'name' =>  'Model1'
+                'name' => 'Sandal',
+                'gender_id' => 1,
             ],
             [
-                'name' => 'Model2'
+                'name' => 'Sneaker',
+                'gender_id' => 1,
+            ],
+            [
+                'name' => 'Slipper',
+                'gender_id' => 1,
+            ],
+            [
+                'name' => 'Sandal',
+                'gender_id' => 2,
+            ],
+            [
+                'name' => 'Sneaker',
+                'gender_id' => 2,
+            ],
+            [
+                'name' => 'Slipper',
+                'gender_id' => 2,
             ],
         ]);
 
@@ -240,73 +258,134 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        DB::table('product_catalogs')->insert([
+        DB::table('collections')->insert([
             [
-                'name' => 'Sandal',
+                'name' => 'Spring',
                 'gender_id' => 1,
             ],
             [
-                'name' => 'Sneaker',
+                'name' => 'Winter',
                 'gender_id' => 1,
             ],
             [
-                'name' => 'Slipper',
+                'name' => 'Best seller',
                 'gender_id' => 1,
             ],
             [
-                'name' => 'Sandal',
+                'name' => 'New arrival',
+                'gender_id' => 1,
+            ],
+            [
+                'name' => 'Sale',
+                'gender_id' => 1,
+            ],
+            [
+                'name' => 'Spring',
                 'gender_id' => 2,
             ],
             [
-                'name' => 'Sneaker',
+                'name' => 'Winter',
                 'gender_id' => 2,
             ],
             [
-                'name' => 'Slipper',
+                'name' => 'Best seller',
                 'gender_id' => 2,
+            ],
+            [
+                'name' => 'New arrival',
+                'gender_id' => 2,
+            ],
+            [
+                'name' => 'Sale',
+                'gender_id' => 2,
+            ],
+        ]);
+
+        DB::table('product_collection')->insert([
+            [
+                'product_id' => 1,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 1,
+                'collection_id' => 2,
+            ],
+            [
+                'product_id' => 2,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 3,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 4,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 5,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 6,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 7,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 8,
+                'collection_id' => 1,
+            ],
+            [
+                'product_id' => 9,
+                'collection_id' => 2,
+            ],
+            [
+                'product_id' => 10,
+                'collection_id' => 2,
+            ],
+            [
+                'product_id' => 11,
+                'collection_id' => 2,
+            ],
+            [
+                'product_id' => 12,
+                'collection_id' => 2,
             ],
         ]);
 
         DB::table('product_details')->insert([
             [
                 'product_id' => 1,
-                'cost' => 200,
-                'price' => 300,
+                'price' => 3046360,
                 'color_id' => 1,
                 'size_id' => 2,
-                'product_cata_id' => 1,
             ],
             [
                 'product_id' => 1,
-                'cost' => 200,
-                'price' => 320,
+                'price' => 3235620,
                 'color_id' => 2,
                 'size_id' => 3,
-                'product_cata_id' => 1,
             ],
             [
                 'product_id' => 2,
-                'cost' => 200,
-                'price' => 300,
+                'price' => 4324525,
                 'color_id' => 1,
                 'size_id' => 2,
-                'product_cata_id' => 2,
             ],
             [
                 'product_id' => 2,
-                'cost' => 200,
-                'price' => 300,
+                'price' => 3423445,
                 'color_id' => 1,
                 'size_id' => 2,
-                'product_cata_id' => 2,
             ],
             [
                 'product_id' => 3,
-                'cost' => 200,
-                'price' => 300,
+                'price' => 3034650,
                 'color_id' => 1,
                 'size_id' => 2,
-                'product_cata_id' => 3,
             ],
         ]);
 
