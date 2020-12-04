@@ -13,12 +13,18 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('origin_name');
             $table->unsignedBigInteger('product_detail_id');
             $table->foreign('product_detail_id')->references('id')->on('product_details');
+        });
+        Schema::create('banner_images', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('origin_name');
+            $table->unsignedInteger('priority');
         });
     }
 
@@ -29,6 +35,7 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('banner_images');
     }
 }

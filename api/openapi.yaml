@@ -7,97 +7,97 @@ info:
     email: nhabui137@gmail.com
   version: 1.5.2
 servers:
-- url: https://mego-backend.herokuapp.com/api
+  - url: 'https://mego-backend.herokuapp.com/api'
 tags:
-- name: authorize
-- name: guest
-- name: user
-- name: brand
-- name: color
-- name: gender
-- name: model
-- name: size
-- name: product catalog
-- name: product
-- name: product detail
-- name: order
-- name: order detail
+  - name: authorize
+  - name: guest
+  - name: user
+  - name: brand
+  - name: color
+  - name: gender
+  - name: model
+  - name: size
+  - name: collection
+  - name: product
+  - name: product detail
+  - name: order
+  - name: order detail
 paths:
   /login:
     post:
       tags:
-      - authorize
+        - authorize
       summary: Login with account user
       operationId: login
       parameters:
-      - name: email
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: password
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content: {}
-        400:
+        '400':
           description: Login fail
           content: {}
   /register:
     post:
       tags:
-      - authorize
+        - authorize
       summary: Register with new account
       operationId: register
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: email
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: password
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: phone
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: address
-        in: query
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: password
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: phone
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: address
+          in: query
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: Create user success
           content: {}
-        400:
+        '400':
           description: Bad request
           content: {}
   /login/google:
     get:
       tags:
-      - authorize
+        - authorize
       summary: Login with google
       operationId: loginGoogle
       responses:
-        200:
+        '200':
           description: successful operation
   /logout:
     post:
       tags:
-      - authorize
+        - authorize
       summary: Logs out current logged in user session
       operationId: logout
       responses:
@@ -107,11 +107,11 @@ paths:
   /guest/brands:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all brands
       operationId: getBrandsByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -120,24 +120,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Brand'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/brands/{id}:
+  '/guest/brands/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a brand by id
       operationId: getBrandById
       parameters:
-      - name: id
-        in: path
-        description: ID of brand that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of brand that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -146,17 +146,17 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Brand'
-        404:
+        '404':
           description: Not found
           content: {}
   /guest/colors:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all colors
       operationId: getColorsByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -165,24 +165,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/colors/{id}:
+  '/guest/colors/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a color by id
       operationId: getColorById
       parameters:
-      - name: id
-        in: path
-        description: ID of color that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of color that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -191,17 +191,17 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
   /guest/genders:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all genders
       operationId: getGendersByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -210,24 +210,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Gender'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/genders/{id}:
+  '/guest/genders/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a gender by id
       operationId: getGendersById
       parameters:
-      - name: id
-        in: path
-        description: ID of gender that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of gender that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -236,17 +236,17 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Gender'
-        404:
+        '404':
           description: Not found
           content: {}
   /guest/models:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all models
       operationId: getModelsByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -255,24 +255,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Model'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/models/{id}:
+  '/guest/models/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a model by id
       operationId: getModelById
       parameters:
-      - name: id
-        in: path
-        description: ID of model that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of model that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -281,17 +281,17 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Model'
-        404:
+        '404':
           description: Not found
           content: {}
   /guest/sizes:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all sizes
       operationId: getSizesByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -300,24 +300,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/sizes/{id}:
+  '/guest/sizes/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a size by id
       operationId: getSizeById
       parameters:
-      - name: id
-        in: path
-        description: ID of size that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of size that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -326,62 +326,62 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/productcatalogs:
+  /guest/collections:
     get:
       tags:
-      - guest
-      summary: Get all product catalogs
-      operationId: getProductCatalogsByGuest
+        - guest
+      summary: Get all collections
+      operationId: getCollectionsByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
+                $ref: '#/components/schemas/Collection'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
-        404:
+                $ref: '#/components/schemas/Collection'
+        '404':
           description: Not found
           content: {}
-  /guest/productcatalogs/{id}:
+  '/guest/collections/{id}':
     get:
       tags:
-      - guest
-      summary: Get a product catalog by id
-      operationId: getProductCatalogById
+        - guest
+      summary: Get a collection by id
+      operationId: getCollectionById
       parameters:
-      - name: id
-        in: path
-        description: ID of product catalog that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of collection that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
+                $ref: '#/components/schemas/Collection'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
-        404:
+                $ref: '#/components/schemas/Collection'
+        '404':
           description: Not found
           content: {}
   /guest/products:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all products
       operationId: getProductsByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -390,24 +390,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/products/{id}:
+  '/guest/products/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a product by id
       operationId: getProductById
       parameters:
-      - name: id
-        in: path
-        description: ID of product that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of product that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -416,17 +416,17 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/productdetails:
+  /guest/product_details:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all product details
       operationId: getProductDetailsByGuest
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -435,24 +435,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProductDetail'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/productdetails/{id}:
+  '/guest/product_details/{id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get a product detail by id
       operationId: getProductDetailById
       parameters:
-      - name: id
-        in: path
-        description: ID of product detail that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -461,24 +461,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProductDetail'
-        404:
+        '404':
           description: Not found
           content: {}
-  /guest/product/colors/{product_id}:
+  '/guest/product/colors/{product_id}':
     get:
       tags:
-      - guest
+        - guest
       summary: Get all colors of product
       operationId: getAllColorsProduct
       parameters:
-      - name: product_id
-        in: path
-        description: ID of product detail that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: product_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -487,24 +487,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
   /guest/product/sizes/{product_id}:
     get:
       tags:
-      - guest
+        - guest
       summary: Get all sizes of product
       operationId: getAllSizesProduct
       parameters:
-      - name: product_id
-        in: path
-        description: ID of product detail that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: product_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -513,17 +513,140 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
+          description: Not found
+          content: {}
+  /guest/collection/products/{collection_id}:
+    get:
+      tags:
+        - guest
+      summary: Get all products of a collection
+      operationId: getAllProductsOfCollection
+      parameters:
+        - name: collection_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Not found
+          content: {}
+  /guest/product/lowest_price/{product_id}:
+    get:
+      tags:
+        - guest
+      summary: Get a product detail with lowest price of a product
+      operationId: getLowestPrice
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        '404':
+          description: Not found
+          content: {}
+  /guest/models/gender/{gender_id}:
+    get:
+      tags:
+        - guest
+      summary: Get models by gender
+      operationId: getModelsGender
+      parameters:
+        - name: gender_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        '404':
+          description: Not found
+          content: {}
+  /guest/collections/gender/{gender_id}:
+    get:
+      tags:
+        - guest
+      summary: Get models by gender
+      operationId: getCollectionsGender
+      parameters:
+        - name: gender_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Collection'
+        '404':
+          description: Not found
+          content: {}
+  /guest/products/gender/{gender_id}:
+    get:
+      tags:
+        - guest
+      summary: Get all products by gender
+      operationId: getProductsGender
+      parameters:
+        - name: gender_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
           description: Not found
           content: {}
   /brands:
     get:
       tags:
-      - brand
+        - brand
       summary: Get all brands
       operationId: getBrands
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -532,24 +655,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Brand'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - brand
+        - brand
       summary: Create new brand
       operationId: createBrand
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -558,30 +681,30 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Brand'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /brands/{id}:
+        - bearerAuth: []
+  '/brands/{id}':
     put:
       tags:
-      - brand
+        - brand
       summary: Update brand
       operationId: postBrand
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -590,24 +713,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Brand'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - brand
+        - brand
       summary: Delete brand
       operationId: deleteBrand
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -616,19 +739,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Brand'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /colors:
     get:
       tags:
-      - color
+        - color
       summary: Get all colors
       operationId: getColors
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -637,24 +760,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - color
+        - color
       summary: Create new color
       operationId: createColor
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -663,30 +786,30 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /colors/{id}:
+        - bearerAuth: []
+  '/colors/{id}':
     put:
       tags:
-      - color
+        - color
       summary: Update color
       operationId: postColor
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -695,24 +818,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - color
+        - color
       summary: Delete color
       operationId: deleteColor
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -721,20 +844,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Color'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-      
+        - bearerAuth: []
   /genders:
     get:
       tags:
-      - gender
+        - gender
       summary: Get all genders
       operationId: getGenders
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -743,24 +865,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Gender'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - gender
+        - gender
       summary: Create new gender
       operationId: createGender
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -769,30 +891,30 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Gender'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /genders/{id}:
+        - bearerAuth: []
+  '/genders/{id}':
     put:
       tags:
-      - gender
+        - gender
       summary: Update gender
       operationId: postGender
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -801,24 +923,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Gender'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - gender
+        - gender
       summary: Delete gender
       operationId: deleteGender
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -827,20 +949,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Gender'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-      
+        - bearerAuth: []
   /models:
     get:
       tags:
-      - model
+        - model
       summary: Get all models
       operationId: getModels
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -849,24 +970,29 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Model'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - model
+        - model
       summary: Create new model
       operationId: createModel
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: gender_id
+          in: query
+          required: true
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -875,30 +1001,30 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Model'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /models/{id}:
+        - bearerAuth: []
+  '/models/{id}':
     put:
       tags:
-      - model
+        - model
       summary: Update model
       operationId: postModel
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -907,24 +1033,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Model'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - model
+        - model
       summary: Delete model
       operationId: deleteModel
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -933,19 +1059,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Model'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /sizes:
     get:
       tags:
-      - size
+        - size
       summary: Get all sizes
       operationId: getSizes
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -954,24 +1080,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - size
+        - size
       summary: Create new size
       operationId: createSize
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -980,30 +1106,30 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /sizes/{id}:
+        - bearerAuth: []
+  '/sizes/{id}':
     put:
       tags:
-      - size
+        - size
       summary: Update size
       operationId: postSize
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1012,24 +1138,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - size
+        - size
       summary: Delete size
       operationId: deleteSize
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -1038,19 +1164,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Size'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /users:
     get:
       tags:
-      - user
+        - user
       summary: Get all users
       operationId: getUsers
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1059,26 +1185,26 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /users/{id}:
+        - bearerAuth: []
+  '/users/{id}':
     get:
       tags:
-      - user
+        - user
       summary: Get a user by id
       operationId: getUserById
       parameters:
-      - name: id
-        in: path
-        description: ID of user that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: ID of user that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1087,36 +1213,36 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     put:
       tags:
-      - user
+        - user
       summary: Update user
       operationId: postUser
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        schema:
-          type: string
-      - name: phone
-        in: query
-        schema:
-          type: string
-      - name: address
-        in: query
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: phone
+          in: query
+          schema:
+            type: string
+        - name: address
+          in: query
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1125,24 +1251,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - user
+        - user
       summary: Delete user
       operationId: deleteUser
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -1151,132 +1277,132 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/User'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /product_catalogs:
+        - bearerAuth: []
+  /collections:
     get:
       tags:
-      - product catalog
-      summary: Get all product catalogs
-      operationId: getProductCatalogs
+        - collection
+      summary: Get all collections
+      operationId: getCollections
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
+                $ref: '#/components/schemas/Collection'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
-        404:
+                $ref: '#/components/schemas/Collection'
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - product catalog
-      summary: Create new product catalog
-      operationId: createProductCatalog
+        - collection
+      summary: Create new collection
+      operationId: createCollection
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: gender_id
-        in: query
-        required: true
-        schema:
-          type: number
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: gender_id
+          in: query
+          required: true
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
+                $ref: '#/components/schemas/Collection'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
-        404:
+                $ref: '#/components/schemas/Collection'
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /product_catalogs/{id}:
+        - bearerAuth: []
+  '/collections/{id}':
     put:
       tags:
-      - product catalog
-      summary: Update product catalog
-      operationId: postProductCatalog
+        - collection
+      summary: Update collection
+      operationId: postCollection
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        schema:
-          type: string
-      - name: gender_id
-        in: query
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: gender_id
+          in: query
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
+                $ref: '#/components/schemas/Collection'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
-        404:
+                $ref: '#/components/schemas/Collection'
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - product catalog
-      summary: Delete product catalog
-      operationId: deleteProductCatalog
+        - collection
+      summary: Delete collection
+      operationId: deleteCollection
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
+                $ref: '#/components/schemas/Collection'
             application/xml:
               schema:
-                $ref: '#/components/schemas/ProductCatalog'
-        404:
+                $ref: '#/components/schemas/Collection'
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /products:
     get:
       tags:
-      - product
+        - product
       summary: Get all products
       operationId: getProducts
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1285,39 +1411,39 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - product
+        - product
       summary: Create new product
       operationId: createProduct
       parameters:
-      - name: name
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: brand_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: model_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: description
-        in: query
-        required: true
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: brand_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: model_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: description
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1326,41 +1452,41 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /products/{id}:
+        - bearerAuth: []
+  '/products/{id}':
     put:
       tags:
-      - product
+        - product
       summary: Update product
       operationId: postProduct
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: name
-        in: query
-        schema:
-          type: string
-      - name: brand_id
-        in: query
-        schema:
-          type: number
-      - name: model_id
-        in: query
-        schema:
-          type: number
-      - name: description
-        in: query
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: brand_id
+          in: query
+          schema:
+            type: number
+        - name: model_id
+          in: query
+          schema:
+            type: number
+        - name: description
+          in: query
+          schema:
+            type: string
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1369,24 +1495,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - product
+        - product
       summary: Delete product
       operationId: deleteProduct
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -1395,19 +1521,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /productdetails:
     get:
       tags:
-      - product detail
+        - product detail
       summary: Get all product details
       operationId: getProductDetails
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1416,49 +1542,39 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProductDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - product detail
+        - product detail
       summary: Create new product detail
       operationId: createProductDetail
       parameters:
-      - name: product_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: cost
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: price
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: color_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: size_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: product_cata_id
-        in: query
-        required: true
-        schema:
-          type: number
+        - name: product_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: price
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: color_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: size_id
+          in: query
+          required: true
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1467,49 +1583,41 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProductDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /productdetails/{id}:
+        - bearerAuth: []
+  '/productdetails/{id}':
     put:
       tags:
-      - product detail
+        - product detail
       summary: Update product detail
       operationId: postProductDetail
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: product_id
-        in: query
-        schema:
-          type: number
-      - name: cost
-        in: query
-        schema:
-          type: number
-      - name: price
-        in: query
-        schema:
-          type: number
-      - name: color_id
-        in: query
-        schema:
-          type: number
-      - name: size_id
-        in: query
-        schema:
-          type: number
-      - name: product_cata_id
-        in: query
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: product_id
+          in: query
+          schema:
+            type: number
+        - name: price
+          in: query
+          schema:
+            type: number
+        - name: color_id
+          in: query
+          schema:
+            type: number
+        - name: size_id
+          in: query
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1518,24 +1626,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProductDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - product detail
+        - product detail
       summary: Delete product detail
       operationId: deleteProductDetail
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -1544,19 +1652,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/ProductDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /orders:
     get:
       tags:
-      - order
+        - order
       summary: Get all orders
       operationId: getOrders
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1565,39 +1673,39 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - order
+        - order
       summary: Create new order
       operationId: createOrder
       parameters:
-      - name: user_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: address
-        in: query
-        required: true
-        schema:
-          type: string
-      - name: total_amount
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: status
-        in: query
-        required: true
-        schema:
-          type: boolean
+        - name: user_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: address
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: total_amount
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: status
+          in: query
+          required: true
+          schema:
+            type: boolean
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1606,26 +1714,26 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /orders/{user_id}:
+        - bearerAuth: []
+  '/orders/{user_id}':
     get:
       tags:
-      - order
+        - order
       summary: Get a order by user id
       operationId: getOrderById
       parameters:
-      - name: user_id
-        in: path
-        description: ID of order that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: user_id
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1634,41 +1742,41 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /orders/{id}:
+        - bearerAuth: []
+  '/orders/{id}':
     put:
       tags:
-      - order
+        - order
       summary: Update order
       operationId: postOrder
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: user_id
-        in: query
-        schema:
-          type: number
-      - name: address
-        in: query
-        schema:
-          type: string
-      - name: total_amount
-        in: query
-        schema:
-          type: number
-      - name: status
-        in: query
-        schema:
-          type: boolean
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: user_id
+          in: query
+          schema:
+            type: number
+        - name: address
+          in: query
+          schema:
+            type: string
+        - name: total_amount
+          in: query
+          schema:
+            type: number
+        - name: status
+          in: query
+          schema:
+            type: boolean
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1677,24 +1785,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - order
+        - order
       summary: Delete order
       operationId: deleteOrder
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -1703,19 +1811,19 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/Order'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
   /order_details:
     get:
       tags:
-      - order detail
+        - order detail
       summary: Get all order details
       operationId: getOrderDetails
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1724,34 +1832,34 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/OrderDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     post:
       tags:
-      - order detail
+        - order detail
       summary: Create new order detail
       operationId: createOrderDetail
       parameters:
-      - name: product_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: order_id
-        in: query
-        required: true
-        schema:
-          type: number
-      - name: number
-        in: query
-        required: true
-        schema:
-          type: number
+        - name: product_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: order_id
+          in: query
+          required: true
+          schema:
+            type: number
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1760,26 +1868,26 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/OrderDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /order_details/{order_id}:
+        - bearerAuth: []
+  '/order_details/{order_id}':
     get:
       tags:
-      - order detail
+        - order detail
       summary: Get a order detail by order_id
       operationId: getOrderDetailByOrderId
       parameters:
-      - name: order_id
-        in: path
-        description: ID of order that needs to be fetched
-        required: true
-        schema:
-          type: integer
+        - name: order_id
+          in: path
+          description: ID of order that needs to be fetched
+          required: true
+          schema:
+            type: integer
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1788,37 +1896,37 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/OrderDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
-  /orderdetails/{id}:
+        - bearerAuth: []
+  '/orderdetails/{id}':
     put:
       tags:
-      - order detail
+        - order detail
       summary: Update order detail
       operationId: postOrderDetail
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
-      - name: product_id
-        in: query
-        schema:
-          type: number
-      - name: order_id
-        in: query
-        schema:
-          type: number
-      - name: number
-        in: query
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
+        - name: product_id
+          in: query
+          schema:
+            type: number
+        - name: order_id
+          in: query
+          schema:
+            type: number
+        - name: number
+          in: query
+          schema:
+            type: number
       responses:
-        200:
+        '200':
           description: successful operation
           content:
             application/json:
@@ -1827,24 +1935,24 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/OrderDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
     delete:
       tags:
-      - order detail
+        - order detail
       summary: Delete order detail
       operationId: deleteOrderDetail
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: number
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: number
       responses:
-        204:
+        '204':
           description: successful operation
           content:
             application/json:
@@ -1853,17 +1961,17 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/OrderDetail'
-        404:
+        '404':
           description: Not found
           content: {}
       security:
-      - bearerAuth: []
+        - bearerAuth: []
 components:
   securitySchemes:
-      bearerAuth:
-        type: http
-        scheme: bearer
-        bearerFormat: JWT
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     User:
       type: object
@@ -1929,7 +2037,10 @@ components:
           format: int64
         name:
           type: string
-          example: "air force"
+          example: Sneaker
+        gender_id:
+          type: integer
+          format: int64
       xml:
         name: Model
     Size:
@@ -1940,10 +2051,10 @@ components:
           format: int64
         name:
           type: string
-          example: "36"
+          example: '36'
       xml:
         name: Size
-    ProductCatalog:
+    Collection:
       type: object
       properties:
         id:
@@ -1951,12 +2062,12 @@ components:
           format: int64
         name:
           type: string
-          example: Collection of winter
+          example: Best seller
         gender_id:
           type: integer
           format: int64
       xml:
-        name: ProductCatalog
+        name: Collection
     Product:
       type: object
       properties:
@@ -1986,20 +2097,13 @@ components:
         product_id:
           type: integer
           format: int64
-        cost:
-          type: number
-          format: float
-          example: 200.0
         price:
           type: number
-          example: 300.0
+          example: 300
         color_id:
           type: integer
           format: int64
         size_id:
-          type: integer
-          format: int64
-        product_cata_id:
           type: integer
           format: int64
       xml:

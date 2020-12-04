@@ -42,15 +42,27 @@ Route::prefix('guest')->group(function () {
     Route::get('models/gender/{gender_id}', [App\Http\Controllers\ModelController::class, 'modelsByGender']);
     Route::get('collections/gender/{gender_id}', [App\Http\Controllers\CollectionController::class, 'collectionsByGender']);
 
-    //get product by gender
+    //get all products by gender
     Route::get('products/gender/{gender_id}', [App\Http\Controllers\ProductController::class, 'productsByGender']);
 });
 
-Route::get('file/img/{file_name}', [FileController::class, 'getImgByName']);
-Route::get('file/img/product/{product_detail_id}', [FileController::class, 'getImgByProductDetailId']);
-Route::post('file/img', [FileController::class, 'uploadImg']);
-Route::delete('file/img/{id}' , [FileController::class, 'deleteImg']);
-Route::delete('file/img/product/{product_detail_id}' , [FileController::class, 'deleteImgByProductDetail']);
+Route::prefix('image')->group(function () {
+    Route::get('products', [FileController::class, 'getAllDataProductImg']);
+    Route::get('banners', [FileController::class, 'getAllDataBannerImg']);
+
+    Route::get('{file_name}', [FileController::class, 'getImgByName']);
+
+    Route::get('product/{product_detail_id}', [FileController::class, 'getImgByProductDetailId']);
+    Route::get('banner/{priority}', [FileController::class, 'getImgByPriority']);
+
+    Route::post('product', [FileController::class, 'uploadProductImg']);
+    Route::post('banner', [FileController::class, 'uploadBannerImg']);
+
+    Route::delete('product/{id}' , [FileController::class, 'deleteProductImgById']);
+    Route::delete('product/{product_detail_id}' , [FileController::class, 'deleteProductImgByProductDetail']);
+
+    Route::delete('banner/{id}' , [FileController::class, 'deleteBannerImgById']);
+});
 
 //REGION REQUEST LOGIN TO ACCESS
 Route::post('register', [AuthController::class, 'register']);

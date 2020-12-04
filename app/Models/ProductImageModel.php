@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ImageModel extends Model
+class ProductImageModel extends Model
 {
     public $timestamps = false;
     
-    protected $table = "images";
+    protected $table = "product_images";
 
     protected $fillable = [
         'name',
