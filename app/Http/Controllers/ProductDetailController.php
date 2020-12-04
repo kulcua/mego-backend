@@ -19,11 +19,9 @@ class ProductDetailController extends Controller
         $this->authorize('admin');
         $rules = [
             'product_id' => 'required',
-            'cost' => 'required',
             'price' => 'required',
             'color_id' => 'required',
             'size_id' => 'required',
-            'product_cata_id' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails())
@@ -78,5 +76,11 @@ class ProductDetailController extends Controller
     {
         $colors = ProductDetailModel::where('product_id', $product_id)->join('sizes', 'sizes.id', '=', 'size_id')->select('product_details.size_id', 'sizes.name')->get();
         return response()->json($colors, 200);
+    }
+
+    public function lowestPrice($product_id)
+    {
+        $product_detail = ProductDetailModel::where('product_id', $product_id)->orderByRaw('price ASC')->first();
+        return response()->json($product_detail, 200);
     }
 }

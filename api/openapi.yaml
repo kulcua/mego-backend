@@ -1,0 +1,2041 @@
+openapi: 3.0.1
+info:
+  title: Mego's Document APIs
+  description: |
+    This is a Mego's Document APIs
+  contact:
+    email: nhabui137@gmail.com
+  version: 1.5.2
+servers:
+- url: https://mego-backend.herokuapp.com/api
+tags:
+- name: authorize
+- name: guest
+- name: user
+- name: brand
+- name: color
+- name: gender
+- name: model
+- name: size
+- name: product catalog
+- name: product
+- name: product detail
+- name: order
+- name: order detail
+paths:
+  /login:
+    post:
+      tags:
+      - authorize
+      summary: Login with account user
+      operationId: login
+      parameters:
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content: {}
+        400:
+          description: Login fail
+          content: {}
+  /register:
+    post:
+      tags:
+      - authorize
+      summary: Register with new account
+      operationId: register
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: email
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: password
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: phone
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: address
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: Create user success
+          content: {}
+        400:
+          description: Bad request
+          content: {}
+  /login/google:
+    get:
+      tags:
+      - authorize
+      summary: Login with google
+      operationId: loginGoogle
+      responses:
+        200:
+          description: successful operation
+  /logout:
+    post:
+      tags:
+      - authorize
+      summary: Logs out current logged in user session
+      operationId: logout
+      responses:
+        default:
+          description: successful operation
+          content: {}
+  /guest/brands:
+    get:
+      tags:
+      - guest
+      summary: Get all brands
+      operationId: getBrandsByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Brand'
+        404:
+          description: Not found
+          content: {}
+  /guest/brands/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a brand by id
+      operationId: getBrandById
+      parameters:
+      - name: id
+        in: path
+        description: ID of brand that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Brand'
+        404:
+          description: Not found
+          content: {}
+  /guest/colors:
+    get:
+      tags:
+      - guest
+      summary: Get all colors
+      operationId: getColorsByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+  /guest/colors/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a color by id
+      operationId: getColorById
+      parameters:
+      - name: id
+        in: path
+        description: ID of color that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+  /guest/genders:
+    get:
+      tags:
+      - guest
+      summary: Get all genders
+      operationId: getGendersByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gender'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gender'
+        404:
+          description: Not found
+          content: {}
+  /guest/genders/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a gender by id
+      operationId: getGendersById
+      parameters:
+      - name: id
+        in: path
+        description: ID of gender that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gender'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gender'
+        404:
+          description: Not found
+          content: {}
+  /guest/models:
+    get:
+      tags:
+      - guest
+      summary: Get all models
+      operationId: getModelsByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: Not found
+          content: {}
+  /guest/models/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a model by id
+      operationId: getModelById
+      parameters:
+      - name: id
+        in: path
+        description: ID of model that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: Not found
+          content: {}
+  /guest/sizes:
+    get:
+      tags:
+      - guest
+      summary: Get all sizes
+      operationId: getSizesByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+  /guest/sizes/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a size by id
+      operationId: getSizeById
+      parameters:
+      - name: id
+        in: path
+        description: ID of size that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+  /guest/productcatalogs:
+    get:
+      tags:
+      - guest
+      summary: Get all product catalogs
+      operationId: getProductCatalogsByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        404:
+          description: Not found
+          content: {}
+  /guest/productcatalogs/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a product catalog by id
+      operationId: getProductCatalogById
+      parameters:
+      - name: id
+        in: path
+        description: ID of product catalog that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        404:
+          description: Not found
+          content: {}
+  /guest/products:
+    get:
+      tags:
+      - guest
+      summary: Get all products
+      operationId: getProductsByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not found
+          content: {}
+  /guest/products/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a product by id
+      operationId: getProductById
+      parameters:
+      - name: id
+        in: path
+        description: ID of product that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not found
+          content: {}
+  /guest/productdetails:
+    get:
+      tags:
+      - guest
+      summary: Get all product details
+      operationId: getProductDetailsByGuest
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        404:
+          description: Not found
+          content: {}
+  /guest/productdetails/{id}:
+    get:
+      tags:
+      - guest
+      summary: Get a product detail by id
+      operationId: getProductDetailById
+      parameters:
+      - name: id
+        in: path
+        description: ID of product detail that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        404:
+          description: Not found
+          content: {}
+  /guest/product/colors/{product_id}:
+    get:
+      tags:
+      - guest
+      summary: Get all colors of product
+      operationId: getAllColorsProduct
+      parameters:
+      - name: product_id
+        in: path
+        description: ID of product detail that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+  /guest/product/sizes/{product_id}:
+    get:
+      tags:
+      - guest
+      summary: Get all sizes of product
+      operationId: getAllSizesProduct
+      parameters:
+      - name: product_id
+        in: path
+        description: ID of product detail that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+  /brands:
+    get:
+      tags:
+      - brand
+      summary: Get all brands
+      operationId: getBrands
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Brand'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - brand
+      summary: Create new brand
+      operationId: createBrand
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Brand'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /brands/{id}:
+    put:
+      tags:
+      - brand
+      summary: Update brand
+      operationId: postBrand
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Brand'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - brand
+      summary: Delete brand
+      operationId: deleteBrand
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Brand'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /colors:
+    get:
+      tags:
+      - color
+      summary: Get all colors
+      operationId: getColors
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - color
+      summary: Create new color
+      operationId: createColor
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /colors/{id}:
+    put:
+      tags:
+      - color
+      summary: Update color
+      operationId: postColor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - color
+      summary: Delete color
+      operationId: deleteColor
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Color'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Color'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+      
+  /genders:
+    get:
+      tags:
+      - gender
+      summary: Get all genders
+      operationId: getGenders
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gender'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gender'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - gender
+      summary: Create new gender
+      operationId: createGender
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gender'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gender'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /genders/{id}:
+    put:
+      tags:
+      - gender
+      summary: Update gender
+      operationId: postGender
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gender'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gender'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - gender
+      summary: Delete gender
+      operationId: deleteGender
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gender'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Gender'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+      
+  /models:
+    get:
+      tags:
+      - model
+      summary: Get all models
+      operationId: getModels
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - model
+      summary: Create new model
+      operationId: createModel
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /models/{id}:
+    put:
+      tags:
+      - model
+      summary: Update model
+      operationId: postModel
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - model
+      summary: Delete model
+      operationId: deleteModel
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Model'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /sizes:
+    get:
+      tags:
+      - size
+      summary: Get all sizes
+      operationId: getSizes
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - size
+      summary: Create new size
+      operationId: createSize
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /sizes/{id}:
+    put:
+      tags:
+      - size
+      summary: Update size
+      operationId: postSize
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - size
+      summary: Delete size
+      operationId: deleteSize
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Size'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Size'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /users:
+    get:
+      tags:
+      - user
+      summary: Get all users
+      operationId: getUsers
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /users/{id}:
+    get:
+      tags:
+      - user
+      summary: Get a user by id
+      operationId: getUserById
+      parameters:
+      - name: id
+        in: path
+        description: ID of user that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    put:
+      tags:
+      - user
+      summary: Update user
+      operationId: postUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: phone
+        in: query
+        schema:
+          type: string
+      - name: address
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /product_catalogs:
+    get:
+      tags:
+      - product catalog
+      summary: Get all product catalogs
+      operationId: getProductCatalogs
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - product catalog
+      summary: Create new product catalog
+      operationId: createProductCatalog
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: gender_id
+        in: query
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /product_catalogs/{id}:
+    put:
+      tags:
+      - product catalog
+      summary: Update product catalog
+      operationId: postProductCatalog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: gender_id
+        in: query
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - product catalog
+      summary: Delete product catalog
+      operationId: deleteProductCatalog
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductCatalog'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /products:
+    get:
+      tags:
+      - product
+      summary: Get all products
+      operationId: getProducts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - product
+      summary: Create new product
+      operationId: createProduct
+      parameters:
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: brand_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: model_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: description
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /products/{id}:
+    put:
+      tags:
+      - product
+      summary: Update product
+      operationId: postProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: brand_id
+        in: query
+        schema:
+          type: number
+      - name: model_id
+        in: query
+        schema:
+          type: number
+      - name: description
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - product
+      summary: Delete product
+      operationId: deleteProduct
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /productdetails:
+    get:
+      tags:
+      - product detail
+      summary: Get all product details
+      operationId: getProductDetails
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - product detail
+      summary: Create new product detail
+      operationId: createProductDetail
+      parameters:
+      - name: product_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: cost
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: price
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: color_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: size_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: product_cata_id
+        in: query
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /productdetails/{id}:
+    put:
+      tags:
+      - product detail
+      summary: Update product detail
+      operationId: postProductDetail
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: product_id
+        in: query
+        schema:
+          type: number
+      - name: cost
+        in: query
+        schema:
+          type: number
+      - name: price
+        in: query
+        schema:
+          type: number
+      - name: color_id
+        in: query
+        schema:
+          type: number
+      - name: size_id
+        in: query
+        schema:
+          type: number
+      - name: product_cata_id
+        in: query
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - product detail
+      summary: Delete product detail
+      operationId: deleteProductDetail
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /orders:
+    get:
+      tags:
+      - order
+      summary: Get all orders
+      operationId: getOrders
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - order
+      summary: Create new order
+      operationId: createOrder
+      parameters:
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: address
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: total_amount
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: status
+        in: query
+        required: true
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /orders/{user_id}:
+    get:
+      tags:
+      - order
+      summary: Get a order by user id
+      operationId: getOrderById
+      parameters:
+      - name: user_id
+        in: path
+        description: ID of order that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /orders/{id}:
+    put:
+      tags:
+      - order
+      summary: Update order
+      operationId: postOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: user_id
+        in: query
+        schema:
+          type: number
+      - name: address
+        in: query
+        schema:
+          type: string
+      - name: total_amount
+        in: query
+        schema:
+          type: number
+      - name: status
+        in: query
+        schema:
+          type: boolean
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - order
+      summary: Delete order
+      operationId: deleteOrder
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /order_details:
+    get:
+      tags:
+      - order detail
+      summary: Get all order details
+      operationId: getOrderDetails
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - order detail
+      summary: Create new order detail
+      operationId: createOrderDetail
+      parameters:
+      - name: product_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: order_id
+        in: query
+        required: true
+        schema:
+          type: number
+      - name: number
+        in: query
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /order_details/{order_id}:
+    get:
+      tags:
+      - order detail
+      summary: Get a order detail by order_id
+      operationId: getOrderDetailByOrderId
+      parameters:
+      - name: order_id
+        in: path
+        description: ID of order that needs to be fetched
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+  /orderdetails/{id}:
+    put:
+      tags:
+      - order detail
+      summary: Update order detail
+      operationId: postOrderDetail
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      - name: product_id
+        in: query
+        schema:
+          type: number
+      - name: order_id
+        in: query
+        schema:
+          type: number
+      - name: number
+        in: query
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - order detail
+      summary: Delete order detail
+      operationId: deleteOrderDetail
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        204:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+        404:
+          description: Not found
+          content: {}
+      security:
+      - bearerAuth: []
+components:
+  securitySchemes:
+      bearerAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: ABC
+        email:
+          type: string
+          example: abc@gmail.com
+        phone:
+          type: integer
+          format: int64
+        role_id:
+          type: integer
+          format: int64
+        provider:
+          type: string
+          example: google
+      xml:
+        name: User
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: nike
+      xml:
+        name: Brand
+    Color:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: pink
+      xml:
+        name: Color
+    Gender:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: man
+      xml:
+        name: Gender
+    Model:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: "air force"
+      xml:
+        name: Model
+    Size:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: "36"
+      xml:
+        name: Size
+    ProductCatalog:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Collection of winter
+        gender_id:
+          type: integer
+          format: int64
+      xml:
+        name: ProductCatalog
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: giay 1
+        brand_id:
+          type: integer
+          format: int64
+        model_id:
+          type: integer
+          format: int64
+        description:
+          type: string
+          example: description 1
+      xml:
+        name: Product
+    ProductDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        cost:
+          type: number
+          format: float
+          example: 200.0
+        price:
+          type: number
+          example: 300.0
+        color_id:
+          type: integer
+          format: int64
+        size_id:
+          type: integer
+          format: int64
+        product_cata_id:
+          type: integer
+          format: int64
+      xml:
+        name: ProductDetail
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        user_id:
+          type: integer
+          format: int64
+        address:
+          type: string
+        total_amount:
+          type: number
+          format: float
+        status:
+          type: boolean
+      xml:
+        name: Order
+    OrderDetail:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        order_id:
+          type: integer
+          format: int64
+        number:
+          type: integer
+          format: int64
+      xml:
+        name: OrderDetail

@@ -65,4 +65,10 @@ class ProductController extends Controller
         $product->delete();
         return response()->json(null, 204);
     }
+
+    public function productsByGender($gender_id)
+    {
+        $products = ProductModel::join('models', 'models.id', 'model_id')->where('gender_id', 1)->select('products.id', 'products.name as product_name', 'brand_id', 'model_id', 'models.name as model_name', 'gender_id', 'description')->get();
+        return response()->json($products, 200);
+    }
 }
