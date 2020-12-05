@@ -12,7 +12,7 @@ class OrderController extends Controller
     public function index()
     {
         $this->authorize('admin');
-        return response()->json(OrderModel::get(), 200);
+        return response()->json(OrderModel::with('user')->get(), 200);
     }
 
     public function store(Request $request)
@@ -35,7 +35,7 @@ class OrderController extends Controller
 
     public function show($id)
     {   
-        $order = OrderModel::find($id);
+        $order = OrderModel::with('user')->find($id);
 
         //only customer can view their order
         $this->authorize($order, 'view');
@@ -74,7 +74,7 @@ class OrderController extends Controller
     public function orderByUser($user_id)
     {
         $this->authorize('crud-order');
-        $order = OrderModel::where('user_id', $user_id)->get();
+        $order = OrderModel::where('user_id', $user_id)->with('user')->get();
         if (empty(json_decode($order, true)))
         {
             return response()->json(["message" => "ID Not Found"], 404);

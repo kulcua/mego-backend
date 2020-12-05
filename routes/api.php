@@ -36,7 +36,7 @@ Route::prefix('guest')->group(function () {
     Route::get('collection/products/{collection_id}', [App\Http\Controllers\CollectionController::class, 'collectionProducts']);
 
     //get a product detail with lowest price
-    Route::get('product/lowest_price/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'lowestPrice']);
+    Route::get('products/detail/lowest', [App\Http\Controllers\ProductController::class, 'getAllProductWithLowestPrice']);
 
     //get models and collections by gender
     Route::get('models/gender/{gender_id}', [App\Http\Controllers\ModelController::class, 'modelsByGender']);

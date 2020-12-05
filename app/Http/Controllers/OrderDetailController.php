@@ -12,7 +12,16 @@ class OrderDetailController extends Controller
     public function index()
     {
         $this->authorize('crud-order');
-        return response()->json(OrderDetailModel::get(), 200);
+        return response()->json(OrderDetailModel::with([
+            'product_detail' => function ($query) {
+            $query->with(['product' => function ($query)
+            {
+                $query->with('brand', 'model');
+            }
+            , 'color', 'size']);
+        }, 'order' => function ($query) {
+            $query->with('user');
+        }])->get(), 200);
     }
 
     public function store(Request $request)
@@ -20,7 +29,7 @@ class OrderDetailController extends Controller
         $this->authorize('crud-order');
         $rules = [
             'order_id' => 'required',
-            'product_id' => 'required',
+            'product_detail_id' => 'required',
             'number' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -35,7 +44,16 @@ class OrderDetailController extends Controller
     public function show($id)
     {
         $this->authorize('crud-order');
-        $order_detail = OrderDetailModel::find($id);
+        $order_detail = OrderDetailModel::with([
+            'product_detail' => function ($query) {
+            $query->with(['product' => function ($query)
+            {
+                $query->with('brand', 'model');
+            }
+            , 'color', 'size']);
+        }, 'order' => function ($query) {
+            $query->with('user');
+        }])->find($id);
         if (is_null($order_detail))
         {
             return response()->json(["message" => "ID Not Found"], 404);
@@ -70,7 +88,16 @@ class OrderDetailController extends Controller
     public function detailByOrder($order_id)
     {
         $this->authorize('crud-order');
-        $order_detail = OrderDetailModel::where('order_id', $order_id)->get();
+        $order_detail = OrderDetailModel::where('order_id', $order_id)->with([
+            'product_detail' => function ($query) {
+            $query->with(['product' => function ($query)
+            {
+                $query->with('brand', 'model');
+            }
+            , 'color', 'size']);
+        }, 'order' => function ($query) {
+            $query->with('user');
+        }])->get();
         if (empty(json_decode($order_detail, true)))
         {
             return response()->json(["message" => "ID Not Found"], 404);

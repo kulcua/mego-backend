@@ -12,8 +12,18 @@ class OrderDetailModel extends Model
     protected $table = "order_details";
 
     protected $fillable = [
-        'product_id',
+        'product_detail_id',
         'order_id',
         'number',
     ];
+
+    public function product_detail()
+    {
+        return $this->hasOne(ProductDetailModel::class, 'id', 'product_detail_id');
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(OrderModel::class, 'order_id', 'id');
+    }
 }
