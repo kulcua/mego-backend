@@ -539,7 +539,7 @@ paths:
     get:
       tags:
         - guest
-      summary: Get a product detail with lowest price of a product
+      summary: Get list products with lowest price
       operationId: getLowestPrice
       responses:
         '200':
