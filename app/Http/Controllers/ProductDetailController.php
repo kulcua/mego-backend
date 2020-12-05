@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProductDetailModel;
+use App\Models\SizeModel;
 use Illuminate\Support\Facades\Validator;
 
 class ProductDetailController extends Controller
 {
     public function index()
     {
-        return response()->json(ProductDetailModel::get(), 200);
+        return response()->json(ProductDetailModel::with('product', 'size', 'color')->get(), 200);
     }
 
     public function store(Request $request)
@@ -34,7 +35,7 @@ class ProductDetailController extends Controller
 
     public function show($id)
     {
-        $product_detail = ProductDetailModel::find($id);
+        $product_detail = ProductDetailModel::find($id)->with('product', 'size', 'color')->get();
         if (is_null($product_detail))
         {
             return response()->json(["message" => "ID Not Found"], 404);
@@ -68,19 +69,13 @@ class ProductDetailController extends Controller
 
     public function productColors($product_id)
     {
-        $colors = ProductDetailModel::where('product_id', $product_id)->join('colors', 'colors.id', '=', 'color_id')->select('product_details.color_id', 'colors.name')->get();
+        $colors = ProductDetailModel::where('product_id', $product_id)->with('color')->get();
         return response()->json($colors, 200);
     }
 
     public function productSizes($product_id)
     {
-        $colors = ProductDetailModel::where('product_id', $product_id)->join('sizes', 'sizes.id', '=', 'size_id')->select('product_details.size_id', 'sizes.name')->get();
-        return response()->json($colors, 200);
-    }
-
-    public function lowestPrice($product_id)
-    {
-        $product_detail = ProductDetailModel::where('product_id', $product_id)->orderByRaw('price ASC')->first();
-        return response()->json($product_detail, 200);
+        $sizes = ProductDetailModel::where('product_id', $product_id)->with('size')->get();
+        return response()->json($sizes, 200);
     }
 }

@@ -11,7 +11,7 @@ class ModelController extends Controller
 {
     public function index()
     {
-        return response()->json(ModelModel::get(), 200);
+        return response()->json(ModelModel::with('gender')->get(), 200);
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class ModelController extends Controller
 
     public function show($id)
     {
-        $model = ModelModel::find($id);
+        $model = ModelModel::with('gender')->find($id);
         if (is_null($model))
         {
             return response()->json(["message" => "ID Not Found"], 404);
@@ -66,7 +66,7 @@ class ModelController extends Controller
 
     public function modelsByGender($gender_id)
     {
-        $models = ModelModel::where('gender_id', $gender_id)->get();
+        $models = ModelModel::where('gender_id', $gender_id)->with('gender')->get();
         return response()->json($models, 200);
     }
 }

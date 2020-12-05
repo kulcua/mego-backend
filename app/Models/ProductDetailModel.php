@@ -18,8 +18,18 @@ class ProductDetailModel extends Model
         'size_id',
     ];
 
-    public function product_detail_photos()
+    public function product()
     {
-        return $this->hasMany(ImageModel::class); 
+        return $this->belongsTo(ProductModel::class); 
+    }
+    
+    public function size()
+    {
+        return $this->hasOne(SizeModel::class, 'id', 'size_id'); 
+    }
+
+    public function color()
+    {
+        return $this->hasOne(ColorModel::class, 'id', 'color_id'); 
     }
 }

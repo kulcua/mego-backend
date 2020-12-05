@@ -22,4 +22,19 @@ class ProductModel extends Model
     {
         return $this->belongsToMany(CollectionModel::class, 'product_collection', 'product_id', 'collection_id');
     }
+
+    public function brand()
+    {
+        return $this->hasOne(BrandModel::class, 'id', 'brand_id'); 
+    }
+
+    public function model()
+    {
+        return $this->hasOne(ModelModel::class, 'id', 'model_id'); 
+    }
+
+    public function product_detail()
+    {
+        return $this->hasOne(ProductDetailModel::class, 'product_id', 'id');
+    }
 }

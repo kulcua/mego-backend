@@ -12,6 +12,12 @@ class ModelModel extends Model
     protected $table = "models";
 
     protected $fillable = [
-        'name'
+        'name',
+        'gender_id'
     ];
+
+    public function gender()
+    {
+        return $this->hasMany(GenderModel::class, 'id', 'gender_id');
+    }
 }

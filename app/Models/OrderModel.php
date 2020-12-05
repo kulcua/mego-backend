@@ -17,4 +17,9 @@ class OrderModel extends Model
         'total_amount',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(UserModel::class, 'id', 'user_id');
+    }
 }

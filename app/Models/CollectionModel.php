@@ -20,4 +20,9 @@ class CollectionModel extends Model
     {
         return $this->belongsToMany(ProductModel::class, 'product_collection', 'product_id', 'collection_id');
     }
+
+    public function gender()
+    {
+        return $this->hasMany(GenderModel::class, 'id', 'gender_id');
+    }
 }

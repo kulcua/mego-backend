@@ -11,7 +11,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return response()->json(ProductModel::get(), 200);
+        return response()->json(ProductModel::with([
+            'model' => function ($query)
+            {
+                $query->with('gender');
+            }
+            , 'brand',
+            'collections' => function ($query)
+            {
+                $query->with('gender');
+            }])->get(), 200);
     }
 
     public function store(Request $request)
@@ -34,7 +43,16 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = ProductModel::find($id);
+        $product = ProductModel::find($id)->with([
+            'model' => function ($query)
+            {
+                $query->with('gender');
+            }
+            , 'brand',
+            'collections' => function ($query)
+            {
+                $query->with('gender');
+            }])->get();
         if (is_null($product))
         {
             return response()->json(["message" => "ID Not Found"], 404);
@@ -68,7 +86,24 @@ class ProductController extends Controller
 
     public function productsByGender($gender_id)
     {
-        $products = ProductModel::join('models', 'models.id', 'model_id')->where('gender_id', 1)->select('products.id', 'products.name as product_name', 'brand_id', 'model_id', 'models.name as model_name', 'gender_id', 'description')->get();
+        $products = ProductModel::find($gender_id)->with([
+            'model' => function ($query)
+            {
+                $query->with('gender');
+            }
+            , 'brand',
+            'collections' => function ($query)
+            {
+                $query->with('gender');
+            }])->get();
+        return response()->json($products, 200);
+    }
+
+    public function getAllProductWithLowestPrice()
+    {
+        $products = ProductModel::with(['product_detail' => function ($query) {
+            $query->whereNotNull('price')->orderBy('price', 'asc');
+        }])->get();
         return response()->json($products, 200);
     }
 }

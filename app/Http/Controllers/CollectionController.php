@@ -12,7 +12,7 @@ class CollectionController extends Controller
 {
     public function index()
     {
-        return response()->json(CollectionModel::get(), 200);
+        return response()->json(CollectionModel::with('gender')->get(), 200);
     }
 
     public function store(Request $request)
@@ -33,7 +33,7 @@ class CollectionController extends Controller
 
     public function show($id)
     {
-        $product_cata = CollectionModel::find($id);
+        $product_cata = CollectionModel::with('gender')->find($id);
         if (is_null($product_cata))
         {
             return response()->json(["message" => "ID Not Found"], 404);
@@ -73,7 +73,7 @@ class CollectionController extends Controller
 
     public function collectionsByGender($gender_id)
     {
-        $collections = CollectionModel::where('gender_id', $gender_id)->get();
+        $collections = CollectionModel::where('gender_id', $gender_id)->with('gender')->get();
         return response()->json($collections, 200);
     }
 }
