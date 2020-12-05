@@ -78,4 +78,14 @@ class ProductDetailController extends Controller
         $sizes = ProductDetailModel::where('product_id', $product_id)->with('size')->get();
         return response()->json($sizes, 200);
     }
+
+    public function detailBySizeColor($product_id, $color_id, $size_id)
+    {
+        $product_detail = ProductDetailModel::where([
+            ['product_id', $product_id], 
+            ['color_id', $color_id], 
+            ['size_id', $size_id]
+            ])->with('size', 'color')->get();
+        return response()->json($product_detail, 200);
+    }
 }
