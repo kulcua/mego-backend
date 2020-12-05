@@ -102,8 +102,8 @@ class ProductController extends Controller
     public function getAllProductWithLowestPrice()
     {
         $products = ProductModel::with(['product_detail' => function ($query) {
-            $query->whereNotNull('price')->orderBy('price', 'asc');
-        }])->get();
+            $query->orderBy('price', 'asc');
+        }])->whereHas('product_detail')->get();
         return response()->json($products, 200);
     }
 }
