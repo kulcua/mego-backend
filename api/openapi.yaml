@@ -520,7 +520,7 @@ paths:
     get:
       tags:
         - guest
-      summary: Get all sizes of product
+      summary: Get product detail by color and size
       operationId: getDetailSizeColor
       parameters:
         - name: product_id
