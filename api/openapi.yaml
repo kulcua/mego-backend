@@ -516,6 +516,37 @@ paths:
         '404':
           description: Not found
           content: {}
+  /guest/product_detail/product/{product_id}/color/{color_id}/size/{size_id}:
+    get:
+      tags:
+        - guest
+      summary: Get product detail by color and size
+      operationId: getDetailSizeColor
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product detail that needs to be fetched
+          required: true
+          schema:
+            type: integer
+        - name: color_id
+          in: path
+          description: ID of color that needs to be fetched
+          required: true
+          schema:
+            type: integer
+        - name: size_id
+          in: path
+          description: ID of size that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: Not found
+          content: {}
   /guest/collection/products/{collection_id}:
     get:
       tags:
