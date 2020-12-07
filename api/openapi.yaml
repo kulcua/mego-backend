@@ -1550,6 +1550,56 @@ paths:
           content: {}
       security:
         - bearerAuth: []
+  /product/color:
+    post:
+        tags:
+          - product
+        summary: Add color for product
+        operationId: addColorProduct
+        parameters:
+          - name: product_id
+            in: query
+            required: true
+            schema:
+              type: number
+          - name: color_id
+            in: query
+            required: true
+            schema:
+              type: number
+        responses:
+          '200':
+            description: successful operation
+          '404':
+            description: Not found
+            content: {}
+        security:
+          - bearerAuth: []
+  /product/size:
+    post:
+        tags:
+          - product
+        summary: Add size for product
+        operationId: addSizeProduct
+        parameters:
+          - name: product_id
+            in: query
+            required: true
+            schema:
+              type: number
+          - name: size_id
+            in: query
+            required: true
+            schema:
+              type: number
+        responses:
+          '200':
+            description: successful operation
+          '404':
+            description: Not found
+            content: {}
+        security:
+          - bearerAuth: []
   /productdetails:
     get:
       tags:

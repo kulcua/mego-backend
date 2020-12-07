@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProductModel;
+use Exception;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -119,5 +121,51 @@ class ProductController extends Controller
             $query->where('product_id', $product_id);
         }])->first()->sizes;
         return response()->json($sizes, 200); 
+    }
+
+    public function colorForProduct(Request $request){
+        $this->authorize('admin');
+        $rules = [
+            'product_id' => 'required|numeric',
+            'color_id' => 'required|numeric',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails())
+        {
+            return response()->json($validator->errors(), 400);
+        }
+        try {
+            DB::table('product_color')->insert($request->all());
+
+            return response()->json('Successful', 201);
+        }
+        catch (Exception $e) {
+            // dd($e->getMessage());
+            return response()->json('Data exists', 200);
+        }
+    }
+
+    public function sizeForProduct(Request $request){
+        $this->authorize('admin');
+        $rules = [
+            'product_id' => 'required|numeric',
+            'size_id' => 'required|numeric',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails())
+        {
+            return response()->json($validator->errors(), 400);
+        }
+        try {
+            DB::table('product_size')->insert($request->all());
+
+            return response()->json('Successful', 201);
+        }
+        catch (Exception $e) {
+            // dd($e->getMessage());
+            return response()->json('Data exists', 200);
+        }
     }
 }

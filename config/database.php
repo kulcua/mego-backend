@@ -70,7 +70,7 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
-            'database' => ltrim($DATABASE_URL['path'],['/']),
+            'database' => env('DB_DATABASE', 'shoesstore'),
             // env('DB_DATABASE', 'shoesstore'),
             // ltrim($DATABASE_URL['path'],['/']),
             'username' => env('DB_USERNAME', 'kulcua'),
