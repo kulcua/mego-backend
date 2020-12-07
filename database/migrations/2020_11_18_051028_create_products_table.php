@@ -22,6 +22,22 @@ class CreateProductsTable extends Migration
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->text('description');
         });
+
+        Schema::create('product_color', function (Blueprint $table) {
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
+            $table->unsignedInteger('color_id');
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('CASCADE');
+            $table->primary(['product_id', 'color_id']);
+        });
+
+        Schema::create('product_size', function (Blueprint $table) {
+            $table->unsignedInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('CASCADE');
+            $table->unsignedInteger('size_id');
+            $table->foreign('size_id')->references('id')->on('sizes')->onDelete('CASCADE');
+            $table->primary(['product_id', 'size_id']);
+        });
     }
 
     /**

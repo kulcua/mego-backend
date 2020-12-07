@@ -106,4 +106,18 @@ class ProductController extends Controller
         }])->whereHas('product_detail')->get();
         return response()->json($products, 200);
     }
+
+    public function productColors($product_id){
+        $colors = ProductModel::where('id', $product_id)->with(['colors' => function ($query) use ($product_id) {
+            $query->where('product_id', $product_id);
+        }])->first()->colors;
+        return response()->json($colors, 200); 
+    }
+
+    public function productSizes($product_id){
+        $sizes = ProductModel::where('id', $product_id)->with(['sizes' => function ($query) use ($product_id) {
+            $query->where('product_id', $product_id);
+        }])->first()->sizes;
+        return response()->json($sizes, 200); 
+    }
 }

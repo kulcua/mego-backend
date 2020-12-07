@@ -307,6 +307,348 @@ class DatabaseSeeder extends Seeder
             
         ]);
 
+        DB::table('product_color')->insert([
+            [
+                'product_id' => 1,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 1,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 1,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 1,
+                'color_id' => 4,
+            ],
+            [
+                'product_id' => 2,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 2,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 2,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 2,
+                'color_id' => 4,
+            ],
+            [
+                'product_id' => 3,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 3,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 3,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 3,
+                'color_id' => 4,
+            ],
+            [
+                'product_id' => 4,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 4,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 4,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 4,
+                'color_id' => 4,
+            ],
+            [
+                'product_id' => 5,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 5,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 5,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 5,
+                'color_id' => 4,
+            ],
+            [
+                'product_id' => 6,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 6,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 6,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 6,
+                'color_id' => 4,
+            ],
+            [
+                'product_id' => 7,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 7,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 7,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 8,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 8,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 8,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 9,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 9,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 9,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 10,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 10,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 10,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 11,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 11,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 11,
+                'color_id' => 3,
+            ],
+            [
+                'product_id' => 12,
+                'color_id' => 1,
+            ],
+            [
+                'product_id' => 12,
+                'color_id' => 2,
+            ],
+            [
+                'product_id' => 12,
+                'color_id' => 3,
+            ],
+        ]);
+
+        DB::table('product_size')->insert([
+            [
+                'product_id' => 1,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 1,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 1,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 1,
+                'size_id' => 4,
+            ],
+            [
+                'product_id' => 2,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 2,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 2,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 2,
+                'size_id' => 4,
+            ],
+            [
+                'product_id' => 3,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 3,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 3,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 3,
+                'size_id' => 4,
+            ],
+            [
+                'product_id' => 4,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 4,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 4,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 4,
+                'size_id' => 4,
+            ],
+            [
+                'product_id' => 5,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 5,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 5,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 5,
+                'size_id' => 4,
+            ],
+            [
+                'product_id' => 6,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 6,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 6,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 6,
+                'size_id' => 4,
+            ],
+            [
+                'product_id' => 7,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 7,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 7,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 8,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 8,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 8,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 9,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 9,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 9,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 10,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 10,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 10,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 11,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 11,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 11,
+                'size_id' => 3,
+            ],
+            [
+                'product_id' => 12,
+                'size_id' => 1,
+            ],
+            [
+                'product_id' => 12,
+                'size_id' => 2,
+            ],
+            [
+                'product_id' => 12,
+                'size_id' => 3,
+            ],
+        ]);
+
         DB::table('collections')->insert([
             [
                 'name' => 'Spring',
