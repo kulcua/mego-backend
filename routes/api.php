@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ProductController;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -77,6 +78,11 @@ Route::get('login/google/callback', [AuthController::class, 'handleProviderCallb
 
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('logout', [AuthController::class, 'logout']);
+
+    //insert color to product
+    Route::post('product/color', [ProductController::class, 'colorForProduct']);
+    //insert size to product
+    Route::post('product/size', [ProductController::class, 'sizeForProduct']);
 
     //with any route that had in Route::apiResouces
     //use Absolute path like App\Http\Controllers\... to avoid err
