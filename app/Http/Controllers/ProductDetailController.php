@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\ProductDetailModel;
-use App\Models\SizeModel;
+use App\Models\ProductModel;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ProductDetailController extends Controller
@@ -29,6 +30,18 @@ class ProductDetailController extends Controller
         {
             return response()->json($validator->errors(), 400);
         }
+
+        $product_color = DB::table('product_color')->where([['product_id', $request->product_id], ['color_id', $request->color_id]])->get();
+        if (empty(json_decode($product_color, true)))
+        {
+            return response()->json('This product has not this color', 200);
+        }
+        $product_size = DB::table('product_size')->where([['product_id', $request->product_id], ['size_id', $request->size_id]])->get();
+        if (empty(json_decode($product_size, true)))
+        {
+            return response()->json('This product has not this size', 200);
+        }
+
         $product_detail = ProductDetailModel::create($request->all());
         return response()->json($product_detail, 201);
     }
@@ -65,18 +78,6 @@ class ProductDetailController extends Controller
         }
         $product_detail->delete();
         return response()->json(null, 204);
-    }
-
-    public function productColors($product_id)
-    {
-        $colors = ProductDetailModel::where('product_id', $product_id)->with('color')->get();
-        return response()->json($colors, 200);
-    }
-
-    public function productSizes($product_id)
-    {
-        $sizes = ProductDetailModel::where('product_id', $product_id)->with('size')->get();
-        return response()->json($sizes, 200);
     }
 
     public function detailBySizeColor($product_id, $color_id, $size_id)

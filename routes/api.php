@@ -29,8 +29,8 @@ Route::prefix('guest')->group(function () {
     //DONE API SHOW ALL FOR GUEST
 
     //get all colors and sizes of a product
-    Route::get('product/colors/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productColors']);
-    Route::get('product/sizes/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'productSizes']);
+    Route::get('product/colors/{product_id}', [App\Http\Controllers\ProductController::class, 'productColors']);
+    Route::get('product/sizes/{product_id}', [App\Http\Controllers\ProductController::class, 'productSizes']);
 
     //get product detail by color and size
     Route::get('product_detail/product/{product_id}/color/{color_id}/size/{size_id}', [App\Http\Controllers\ProductDetailController::class, 'detailBySizeColor']);
