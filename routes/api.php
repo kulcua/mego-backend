@@ -36,7 +36,7 @@ Route::prefix('guest')->group(function () {
     Route::get('product_detail/product/{product_id}/color/{color_id}/size/{size_id}', [App\Http\Controllers\ProductDetailController::class, 'detailBySizeColor']);
 
     //get all products of a collection with filter brand and model
-    Route::get('collection/products/{collection_id}', [App\Http\Controllers\CollectionController::class, 'collectionProductsLowestPriceFilterBrandModel']);
+    Route::get('collection/products', [App\Http\Controllers\CollectionController::class, 'collectionProductsLowestPriceFilterBrandModel']);
 
     //get a product detail with lowest price
     Route::get('products/detail/lowest', [App\Http\Controllers\ProductController::class, 'getAllProductWithLowestPrice']);
