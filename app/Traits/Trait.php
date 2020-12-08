@@ -1,5 +1,7 @@
 <?php
-namespace App\Http\Traits;
+
+namespace App\Traits;
+
 use Illuminate\Support\Str;
 
 trait Filterable{
