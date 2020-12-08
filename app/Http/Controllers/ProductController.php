@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return response()->json(ProductModel::with([
             'model' => function ($query)
@@ -101,11 +101,15 @@ class ProductController extends Controller
         return response()->json($products, 200);
     }
 
-    public function getAllProductWithLowestPrice()
+    public function getAllProductWithLowestPrice(Request $request)
     {
-        $products = ProductModel::with(['product_detail' => function ($query) {
+        $param = $request->all();
+
+        $products = ProductModel::with(['product_detail_min_price'
+         => function ($query) {
             $query->orderBy('price', 'asc');
-        }])->whereHas('product_detail')->get();
+        }])
+        ->whereHas('product_detail_min_price')->filter($param)->get();
         return response()->json($products, 200);
     }
 
@@ -141,7 +145,6 @@ class ProductController extends Controller
             return response()->json('Successful', 201);
         }
         catch (Exception $e) {
-            // dd($e->getMessage());
             return response()->json('Data exists', 200);
         }
     }
@@ -164,7 +167,6 @@ class ProductController extends Controller
             return response()->json('Successful', 201);
         }
         catch (Exception $e) {
-            // dd($e->getMessage());
             return response()->json('Data exists', 200);
         }
     }

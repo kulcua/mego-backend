@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CollectionModel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class CollectionController extends Controller
 {
@@ -23,8 +24,7 @@ class CollectionController extends Controller
             'gender_id' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
-        if ($validator->fails())
-        {
+        if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
         $product_cata = CollectionModel::create($request->all());
@@ -34,8 +34,7 @@ class CollectionController extends Controller
     public function show($id)
     {
         $product_cata = CollectionModel::with('gender')->find($id);
-        if (is_null($product_cata))
-        {
+        if (is_null($product_cata)) {
             return response()->json(["message" => "ID Not Found"], 404);
         }
         return response()->json($product_cata, 200);
@@ -45,8 +44,7 @@ class CollectionController extends Controller
     {
         $this->authorize('admin');
         $product_cata = CollectionModel::find($id);
-        if (is_null($product_cata))
-        {
+        if (is_null($product_cata)) {
             return response()->json(["message" => "ID Not Found"], 404);
         }
         $product_cata->update($request->all());
@@ -57,17 +55,29 @@ class CollectionController extends Controller
     {
         $this->authorize('admin');
         $product_cata = CollectionModel::find($id);
-        if (is_null($product_cata))
-        {
+        if (is_null($product_cata)) {
             return response()->json(["message" => "ID Not Found"], 404);
         }
         $product_cata->delete();
         return response()->json(null, 204);
     }
 
-    public function collectionProducts($collection_id)
+    public function collectionProductsLowestPriceFilterBrandModel(Request $request)
     {
-        $products = DB::table('product_collection')->join('products', 'products.id', '=', 'product_id')->join('collections', 'collections.id', '=', 'collection_id')->where('collection_id', $collection_id)->select('collection_id', 'collections.name as collection_name', 'product_id', 'products.name as product_name')->get();
+        $param = $request->all();
+        //get all products in a collection
+        $products = CollectionModel::where('id', $request->collection_id)->whereHas('products', function (Builder $builder) use ($param) {
+            $builder->filter($param);
+        })->with([
+            'products' => function($builder) use ($param) 
+            { 
+                $builder->whereHas('product_detail_min_price')->filter($param)->with(['product_detail_min_price' => function ($q){
+                    $q->orderBy('price', 'asc');
+                }
+                ]); 
+            }
+            ])->get();
+
         return response()->json($products, 200);
     }
 

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FileController;
-use App\Http\Controllers\ProductController;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +35,8 @@ Route::prefix('guest')->group(function () {
     //get product detail by color and size
     Route::get('product_detail/product/{product_id}/color/{color_id}/size/{size_id}', [App\Http\Controllers\ProductDetailController::class, 'detailBySizeColor']);
 
-    //get all products of a collection
-    Route::get('collection/products/{collection_id}', [App\Http\Controllers\CollectionController::class, 'collectionProducts']);
+    //get all products of a collection with filter brand and model
+    Route::get('collection/products/{collection_id}', [App\Http\Controllers\CollectionController::class, 'collectionProductsLowestPriceFilterBrandModel']);
 
     //get a product detail with lowest price
     Route::get('products/detail/lowest', [App\Http\Controllers\ProductController::class, 'getAllProductWithLowestPrice']);
