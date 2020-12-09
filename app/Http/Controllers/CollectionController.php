@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\CollectionModel;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\DB;
 
 class CollectionController extends Controller
 {
@@ -62,11 +62,11 @@ class CollectionController extends Controller
         return response()->json(null, 204);
     }
 
-    public function collectionProductsLowestPriceFilterBrandModel(Request $request)
+    public function collectionProductsLowestPriceFilterBrandModel($collection_id, Request $request)
     {
         $param = $request->all();
         //get all products in a collection
-        $products = CollectionModel::where('id', $request->collection_id)->whereHas('products', function (Builder $builder) use ($param) {
+        $products = CollectionModel::where('id', $collection_id)->whereHas('products', function (Builder $builder) use ($param) {
             $builder->filter($param);
         })->with([
             'products' => function($builder) use ($param) 
@@ -76,7 +76,8 @@ class CollectionController extends Controller
                 }
                 ]); 
             }
-            ])->get();
+            ])
+            ->get();
 
         return response()->json($products, 200);
     }
