@@ -17,7 +17,7 @@ class CollectionModel extends Model
 
     public function products()
     {
-        return $this->belongsToMany(ProductModel::class, 'product_collection', 'product_id', 'collection_id');
+        return $this->belongsToMany(ProductModel::class, 'product_collection', 'collection_id', 'product_id');
     }
 
     public function gender()
