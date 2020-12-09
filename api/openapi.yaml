@@ -660,6 +660,16 @@ paths:
           required: true
           schema:
             type: integer
+        - name: brand_id
+          in: query
+          description: ID of product detail that needs to be fetched
+          schema:
+            type: integer
+        - name: model_id
+          in: query
+          description: ID of product detail that needs to be fetched
+          schema:
+            type: integer
       responses:
         '200':
           description: successful operation
