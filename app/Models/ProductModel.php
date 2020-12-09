@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\Filterable;
+use Filterable;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductModel extends Model

@@ -86,8 +86,9 @@ class ProductController extends Controller
         return response()->json(null, 204);
     }
 
-    public function productsByGender($gender_id)
+    public function productsByGender($gender_id, Request $request)
     {
+        $param = $request->all();
         $products = ProductModel::find($gender_id)->with([
             'model' => function ($query)
             {
@@ -97,7 +98,7 @@ class ProductController extends Controller
             'collections' => function ($query)
             {
                 $query->with('gender');
-            }])->get();
+            }])->filter($param)->get();
         return response()->json($products, 200);
     }
 

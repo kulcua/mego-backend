@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Traits\Filterable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CollectionModel extends Model
@@ -26,9 +24,4 @@ class CollectionModel extends Model
     {
         return $this->hasMany(GenderModel::class, 'id', 'gender_id');
     }
-
-    protected $filterable = [
-        'brand' => 'brand_id',
-        'model' => 'model_id',
-    ];
 }
