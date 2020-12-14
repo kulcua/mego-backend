@@ -53,18 +53,14 @@ Route::prefix('image')->group(function () {
     Route::get('products', [FileController::class, 'getAllDataProductImg']);
     Route::get('banners', [FileController::class, 'getAllDataBannerImg']);
 
-    Route::get('{file_name}', [FileController::class, 'getImgByName']);
-
     Route::get('product/{product_detail_id}', [FileController::class, 'getImgByProductDetailId']);
     Route::get('banner/{priority}', [FileController::class, 'getImgByPriority']);
 
     Route::post('product', [FileController::class, 'uploadProductImg']);
     Route::post('banner', [FileController::class, 'uploadBannerImg']);
 
-    Route::delete('product/{id}' , [FileController::class, 'deleteProductImgById']);
-    Route::delete('product/{product_detail_id}' , [FileController::class, 'deleteProductImgByProductDetail']);
-
-    Route::delete('banner/{id}' , [FileController::class, 'deleteBannerImgById']);
+    Route::delete('product/{image_id}' , [FileController::class, 'deleteProductImgById']);
+    Route::delete('banner/{image_id}' , [FileController::class, 'deleteBannerImgById']);
 });
 
 //REGION REQUEST LOGIN TO ACCESS
