@@ -48,7 +48,7 @@ class ProductDetailController extends Controller
 
     public function show($id)
     {
-        $product_detail = ProductDetailModel::find($id)->with('product', 'size', 'color')->get();
+        $product_detail = ProductDetailModel::with('product', 'size', 'color')->find($id);
         if (is_null($product_detail))
         {
             return response()->json(["message" => "ID Not Found"], 404);
