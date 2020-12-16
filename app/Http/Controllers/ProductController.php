@@ -45,7 +45,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $product = ProductModel::find($id)->with([
+        $product = ProductModel::with([
             'model' => function ($query)
             {
                 $query->with('gender');
@@ -54,7 +54,7 @@ class ProductController extends Controller
             'collections' => function ($query)
             {
                 $query->with('gender');
-            }])->get();
+            }])->find($id);
         if (is_null($product))
         {
             return response()->json(["message" => "ID Not Found"], 404);
