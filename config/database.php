@@ -69,7 +69,7 @@ return [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
+            'port' => env('DB_PORT', '5433'),
             'database' => ltrim($DATABASE_URL['path'],'/'),
             // ltrim($DATABASE_URL['path'],'/'),
             // env('DB_DATABASE', 'shoesstore'),

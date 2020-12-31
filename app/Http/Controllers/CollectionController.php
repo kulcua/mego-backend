@@ -33,11 +33,11 @@ class CollectionController extends Controller
 
     public function show($id)
     {
-        $product_cata = CollectionModel::with('gender')->find($id);
-        if (is_null($product_cata)) {
+        $collection = CollectionModel::with('gender')->find($id);
+        if (is_null($collection)) {
             return response()->json(["message" => "ID Not Found"], 404);
         }
-        return response()->json($product_cata, 200);
+        return response()->json($collection, 200);
     }
 
     public function update(Request $request, $id)

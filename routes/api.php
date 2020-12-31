@@ -22,7 +22,7 @@ Route::prefix('guest')->group(function () {
     Route::get('colors/{id}', [App\Http\Controllers\ColorController::class, 'show']);
     Route::get('genders/{id}', [App\Http\Controllers\GenderController::class, 'show']);
     Route::get('models/{id}', [App\Http\Controllers\ModelController::class, 'show']);
-    Route::get('collections/{id}', [App\Http\Controllers\CollectionControllers::class, 'show']);
+    Route::get('collections/{id}', [App\Http\Controllers\CollectionController::class, 'show']);
     Route::get('sizes/{id}', [App\Http\Controllers\SizeController::class, 'show']);
     Route::get('products/{id}', [App\Http\Controllers\ProductController::class, 'show']);
     Route::get('product_details/{id}', [App\Http\Controllers\ProductDetailController::class, 'show']);
