@@ -59,7 +59,7 @@ class AuthController extends Controller
 
         $tokenResult = $user->createToken('authToken')->plainTextToken;
 
-        return response()->json(['token' => $tokenResult], 200);
+        return response()->json(['token' => $tokenResult, 'user' => $user], 200);
     }
 
     public function logout(Request $request)
@@ -79,7 +79,7 @@ class AuthController extends Controller
         $user = Socialite::driver('google')->stateless()->user();
         $authUser = $this->findOrCreateUser($user);
         Auth::login($authUser, true);
-        return true;
+        return response()->json(['user' => $authUser], 200);
     }
 
     public function findOrCreateUser($user)
