@@ -88,20 +88,22 @@ class OrderDetailController extends Controller
     public function detailByOrder($order_id)
     {
         $this->authorize('crud-order');
-        $order_detail = OrderDetailModel::where('order_id', $order_id)->with([
+        $order_details = OrderDetailModel::where('order_id', $order_id)->with([
             'product_detail' => function ($query) {
             $query->with(['product' => function ($query)
             {
                 $query->with('brand', 'model');
             }
             , 'color', 'size']);
-        }, 'order' => function ($query) {
-            $query->with('user');
-        }])->get();
-        if (empty(json_decode($order_detail, true)))
+        }
+        // , 'order' => function ($query) {
+        //     $query->with('user');
+        // }
+        ])->get();
+        if (empty(json_decode($order_details, true)))
         {
             return response()->json(["message" => "ID Not Found"], 404);
         }
-        return response()->json($order_detail, 200);
+        return response()->json($order_details, 200);
     }
 }
