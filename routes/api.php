@@ -75,9 +75,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('logout', [AuthController::class, 'logout']);
 
     //insert color to product
-    Route::post('product/color', [ProductController::class, 'colorForProduct']);
+    Route::post('product/color', [App\Http\Controllers\ProductController::class, 'colorForProduct']);
     //insert size to product
-    Route::post('product/size', [ProductController::class, 'sizeForProduct']);
+    Route::post('product/size', [App\Http\Controllers\ProductController::class, 'sizeForProduct']);
+    //get list product detail by product_id
+    Route::get('product_detail/{product_id}', [App\Http\Controllers\ProductDetailController::class, 'detailByProduct']);
 
     //with any route that had in Route::apiResouces
     //use Absolute path like App\Http\Controllers\... to avoid err

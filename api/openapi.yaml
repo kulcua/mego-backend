@@ -1684,6 +1684,34 @@ paths:
           content: {}
       security:
         - bearerAuth: []
+  '/product_detail/{product_id}':
+    get:
+      tags:
+        - product detail
+      summary: Get a order detail by order_id
+      operationId: getProductDetailByProductId
+      parameters:
+        - name: product_id
+          in: path
+          description: ID of product that needs to be fetched
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        '404':
+          description: Not found
+          content: {}
+      security:
+        - bearerAuth: []
   '/product_details/{id}':
     put:
       tags:

@@ -89,4 +89,15 @@ class ProductDetailController extends Controller
             ])->with('size', 'color')->get();
         return response()->json($product_detail, 200);
     }
+
+    public function detailByProduct($product_id)
+    {
+        $this->authorize('admin');
+        $product_details = ProductDetailModel::where('product_id', $product_id)->with('size', 'color')->get();
+        if (empty(json_decode($product_details, true)))
+        {
+            return response()->json(["message" => "ID Not Found"], 404);
+        }
+        return response()->json($product_details, 200);
+    }
 }
