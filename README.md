@@ -2,7 +2,7 @@
 ## Introduction:
 This is an API of shoe store website - Mego made by Laravel 8. This included functions:
 - Login/Logout
-- Google Authentication
+- Google authorization
 - Role/permission (admin, customer)
 - Customer management
 - Product management
